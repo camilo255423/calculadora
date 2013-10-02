@@ -1,0 +1,112 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="js/libs/jquery-1.9.0/jquery.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery.mobile-1.3.2.min.js"></script>
+        <meta name="viewport" content="width=device-width" />
+    </head>
+    <body>
+        <div data-role="header" >
+            
+        </div>
+        <div data-role="content" data-theme="a">
+            <input type="text" value="0" style="text-align: right" id="pantalla"/>
+            <div class="ui-grid-c">
+                
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="1">1</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="2">2</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="3">3</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="/">/</a></div>
+           
+            </div>
+            <div class="ui-grid-c">
+                
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="4">4</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="5">5</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="6">6</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="x">x</a></div>
+           
+            </div>
+            <div class="ui-grid-c">
+                
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="7">7</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="8">8</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="9">9</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="-">-</a></div>
+           
+            </div>
+            <div class="ui-grid-c">
+                
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="C">C</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="0">0</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value=".">.</a></div>
+           <div class="ui-block-c"> <a data-role="button" href="" data-value="+">+</a></div>
+           
+            </div>
+            <a data-role="button" href="" data-value="=">=</a>
+        </div> 
+        <script>
+        var oper="+";
+        var result=0;
+        
+        $("a").on("click",clic);
+        function clic()
+        {
+            console.log(result);
+            var dato = $(this).attr("data-value");
+            if(parseInt(dato, 10) > 0 || dato===".") {
+               if($("#pantalla").val()==="0") $("#pantalla").val(""); 
+            $("#pantalla").val($("#pantalla").val()+dato);
+            }
+            else 
+            {
+            if(dato==="C")
+             {
+               $("#pantalla").val("0");
+               oper="+";
+               result=0;
+             }
+            else {
+                var valor = parseFloat($("#pantalla").val());
+                if(oper==="+")
+                {
+                    result = result + valor;
+                }
+                 if(oper==="-")
+                {
+                    result = result - valor;
+                }   
+                 if(oper==="x")
+                {
+                    result = result * valor;
+                }   
+                 if(oper==="/")
+                {
+                    result = result / valor;
+                     console.log("division"+result);
+                     console.log("valor"+valor);
+                }
+                if(dato==="=")
+                {
+                   $("#pantalla").val(result); 
+                }
+                else
+                {
+                     $("#pantalla").val("0"); 
+                }
+               oper=dato;
+            }
+            
+            }
+        }
+        </script>
+        
+    </body>
+</html>
